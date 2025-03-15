@@ -1,0 +1,37 @@
+syntax = 'proto3';
+
+package query_service;
+
+option go_package = "app/query_service";
+
+service QueryService {
+    rpc get_query(QueryRequest) returns (QueryResponse);
+}
+
+message QueryRequest {
+    string src_phrase = 1;
+    string src_lang = 2;
+    string tgt_lang = 3;
+}
+
+message Span {
+    int32 start = 1;
+    int32 end = 2;
+}
+
+message Document {
+    string id = 1;
+    string sent_id = 2;
+    string src_lang = 3;
+    string src_phrase = 4;
+    string src_sentence = 5;
+    repeated Span src_spans = 6;
+    string tgt_lang = 7;
+    string tgt_phrase = 8;
+    string tgt_sentence = 9;
+    repeated Span tgt_spans = 10;
+}
+
+message QueryResponse {
+    repeated Document hits = 1;
+}

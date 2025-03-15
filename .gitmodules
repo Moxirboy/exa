@@ -1,0 +1,3 @@
+[submodule "tahrirchi-backend-protos"]
+	path = tahrirchi-backend-protos
+	url = git@github.com:tahrirchi/tahrirchi-backend-protos.git
