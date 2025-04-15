@@ -1,12 +1,12 @@
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 
 
 class _Settings(BaseSettings):
-    SERVICE_NAME = "misollar_service"
-    SERVICE_HOST = "localhost"
-    SERVICE_PORT = ":9031"
-    LOGS_PATH = "logs"
-    API_KEY = "07be659f-5168-4c7e-ae3e-5130e06ea99a"
+    SERVICE_NAME: str = "misollar_service"
+    SERVICE_HOST: str = "localhost"
+    SERVICE_PORT: str = ":9020"
+    LOGS_PATH: str = "logs"
+    API_KEY: str = "07be659f-5168-4c7e-ae3e-5130e06ea99a"
 
 
 settings = _Settings()

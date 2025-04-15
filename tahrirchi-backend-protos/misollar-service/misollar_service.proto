@@ -1,14 +1,19 @@
-syntax = 'proto3';
+syntax = "proto3";
 
-package query_service;
+package misollar_service;
 
-option go_package = "app/query_service";
+option go_package = "genproto/misollar_service";
 
-service QueryService {
-    rpc get_query(QueryRequest) returns (QueryResponse);
+service MisollarService {
+    rpc get_misollar_query(MisollarRequest) returns (MisollarResponse);
+    rpc get_misollar_complete(MisollarRequest) returns (CompleteResponse);
 }
 
-message QueryRequest {
+message CompleteResponse {
+    repeated string src_phrase = 1;
+}
+
+message MisollarRequest {
     string src_phrase = 1;
     string src_lang = 2;
     string tgt_lang = 3;
@@ -30,8 +35,9 @@ message Document {
     string tgt_phrase = 8;
     string tgt_sentence = 9;
     repeated Span tgt_spans = 10;
+    string source = 11;
 }
 
-message QueryResponse {
+message MisollarResponse {
     repeated Document hits = 1;
 }

@@ -5,7 +5,13 @@ from typing import ClassVar as _ClassVar, Iterable as _Iterable, Mapping as _Map
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
-class QueryRequest(_message.Message):
+class CompleteResponse(_message.Message):
+    __slots__ = ("src_phrase",)
+    SRC_PHRASE_FIELD_NUMBER: _ClassVar[int]
+    src_phrase: _containers.RepeatedScalarFieldContainer[str]
+    def __init__(self, src_phrase: _Optional[_Iterable[str]] = ...) -> None: ...
+
+class MisollarRequest(_message.Message):
     __slots__ = ("src_phrase", "src_lang", "tgt_lang")
     SRC_PHRASE_FIELD_NUMBER: _ClassVar[int]
     SRC_LANG_FIELD_NUMBER: _ClassVar[int]
@@ -24,7 +30,7 @@ class Span(_message.Message):
     def __init__(self, start: _Optional[int] = ..., end: _Optional[int] = ...) -> None: ...
 
 class Document(_message.Message):
-    __slots__ = ("id", "sent_id", "src_lang", "src_phrase", "src_sentence", "src_spans", "tgt_lang", "tgt_phrase", "tgt_sentence", "tgt_spans")
+    __slots__ = ("id", "sent_id", "src_lang", "src_phrase", "src_sentence", "src_spans", "tgt_lang", "tgt_phrase", "tgt_sentence", "tgt_spans", "source")
     ID_FIELD_NUMBER: _ClassVar[int]
     SENT_ID_FIELD_NUMBER: _ClassVar[int]
     SRC_LANG_FIELD_NUMBER: _ClassVar[int]
@@ -35,6 +41,7 @@ class Document(_message.Message):
     TGT_PHRASE_FIELD_NUMBER: _ClassVar[int]
     TGT_SENTENCE_FIELD_NUMBER: _ClassVar[int]
     TGT_SPANS_FIELD_NUMBER: _ClassVar[int]
+    SOURCE_FIELD_NUMBER: _ClassVar[int]
     id: str
     sent_id: str
     src_lang: str
@@ -45,9 +52,10 @@ class Document(_message.Message):
     tgt_phrase: str
     tgt_sentence: str
     tgt_spans: _containers.RepeatedCompositeFieldContainer[Span]
-    def __init__(self, id: _Optional[str] = ..., sent_id: _Optional[str] = ..., src_lang: _Optional[str] = ..., src_phrase: _Optional[str] = ..., src_sentence: _Optional[str] = ..., src_spans: _Optional[_Iterable[_Union[Span, _Mapping]]] = ..., tgt_lang: _Optional[str] = ..., tgt_phrase: _Optional[str] = ..., tgt_sentence: _Optional[str] = ..., tgt_spans: _Optional[_Iterable[_Union[Span, _Mapping]]] = ...) -> None: ...
+    source: str
+    def __init__(self, id: _Optional[str] = ..., sent_id: _Optional[str] = ..., src_lang: _Optional[str] = ..., src_phrase: _Optional[str] = ..., src_sentence: _Optional[str] = ..., src_spans: _Optional[_Iterable[_Union[Span, _Mapping]]] = ..., tgt_lang: _Optional[str] = ..., tgt_phrase: _Optional[str] = ..., tgt_sentence: _Optional[str] = ..., tgt_spans: _Optional[_Iterable[_Union[Span, _Mapping]]] = ..., source: _Optional[str] = ...) -> None: ...
 
-class QueryResponse(_message.Message):
+class MisollarResponse(_message.Message):
     __slots__ = ("hits",)
     HITS_FIELD_NUMBER: _ClassVar[int]
     hits: _containers.RepeatedCompositeFieldContainer[Document]
